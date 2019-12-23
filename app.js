@@ -5,7 +5,20 @@ function searchVoter(id) {
         data : {'nik': id},
         dataType : 'json',
         success : function(data) {
-            $('#search_result').html(data.msg);
+            $('#result').html(data.msg);
+            let message = data.msg;
+            if (!liff.isInClient()) {
+                sendAlertIfNotInClient();
+            } else {
+                liff.sendMessages([{
+                    'type': 'text',
+                    'text': message,
+                }]).then(function() {
+                    window.alert('Message sent');
+                }).catch(function(error) {
+                    window.alert('Error sending message: ' + error);
+                });
+            }
         }
         
     });
@@ -13,9 +26,9 @@ function searchVoter(id) {
 
 (function(){
    // do jQuery
-   $('#form_cari').on('submit', function(e){
+   jQuery('#form-identity-check').on('submit', function(e) {
        e.preventDefault();
-       var id = $('#nik').val();
+       let id = $(this).find('#searchNik').val();
        searchVoter(id);
    });
 })(jQuery)

@@ -3,6 +3,7 @@
 $identities = ['76', '72'];
 $result = [
     'error' => true,
+    'status' => 'unregistered',
     'msg' => 'Not implemented'
 ];
 if(isset($_POST['nik'])) {
@@ -12,6 +13,7 @@ if(isset($_POST['nik'])) {
     }
     $result = [
         'error' => false,
+        'status' => 'registered',
         'msg' => $msg
     ];
 }

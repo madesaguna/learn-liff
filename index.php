@@ -5,9 +5,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Cek Pemilih</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="style.css">
+
     </head>
-    <body>
+    <body class="bg-light">
+        <div class="container">
+            <div class="py-5 text-center">
+                <img class="d-block mx-auto mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/KPU_Logo.svg/217px-KPU_Logo.svg.png" alt="" width="72">
+                <h2>Form pengecekan NIK</h2>
+                <p class="lead">Silakan check nama NIK anda!</p>
+            </div>
+            <form id="form-identity-check">
+                <div class="form-group">
+                    <label for="searchNik">Nomor Induk Kependudukan (No. KTP)</label>
+                    <input name="nik" type="text" class="form-control" id="searchNik" aria-describedby="emailHelp" placeholder="Nomor Induk Kependudukan (Contoh : 5171xxx)">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+            <div class="py-2">
+                <div id="result" class="text-center">
+                    Selamat Anda Telah terdaftar sebagai pemilih
+                </div>
+            </div>
+
+        </div>
+
         <div id="liffAppContent">
             <!-- ACTION BUTTONS -->
             <div class="buttonGroup">
@@ -135,7 +158,7 @@
             <input type="text" name="nik" id="nik">
             <input type="submit" value="cari">
         </form>
-        <div id="search_result"></div>
+
         <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script src="line-starter.js"></script>
