@@ -2,7 +2,7 @@
 
 /* init db */
 
-$connectionString = parse_url(get_env('DATABASE_URL'));
+$connectionString = parse_url(getenv('DATABASE_URL'));
 $servername = $connectionString['host'];
 $username = $connectionString['user'];
 $password = $connectionString['pass'];
