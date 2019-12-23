@@ -23,6 +23,23 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
 
+            <form id="form-identity-register">
+                <div class="form-group">
+                    <label for="searchNik">Nomor Induk Kependudukan (No. KTP)</label>
+                    <input name="nik" type="text" class="form-control" id="searchNik" aria-describedby="emailHelp" placeholder="Nomor Induk Kependudukan (Contoh : 5171xxx)">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="searchNama">Nama</label>
+                    <input name="nama" type="text" class="form-control" id="searchNama" placeholder="Nama Lengkap">
+                </div>
+                <div class="form-group">
+                    <label for="registerNoHP">No. HP</label>
+                    <input name="no_telp" type="text" class="form-control" id="registerNoHP" placeholder="081xxx">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
             <div class="py-2">
                 <div id="result" class="text-center">
                     Selamat Anda Telah terdaftar sebagai pemilih
