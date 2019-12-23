@@ -49,6 +49,7 @@ try{
                 ':no_telp' => $_POST['no_telp'],
             ];
             $stmt->execute($dataPemilih);
+            $result['status'] = 'registered';
             $result['error'] = false;
             $result['msg'] = "Data Pemilih {$_POST['nik']} telah disimpan. Tunggu PPS menghubungi anda untuk verifikasi!";
         }
