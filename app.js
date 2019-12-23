@@ -10,14 +10,16 @@ function searchVoter(id) {
             if (!liff.isInClient()) {
                 sendAlertIfNotInClient();
             } else {
-                liff.sendMessages([{
-                    'type': 'text',
-                    'text': message,
-                }]).then(function() {
-                    window.alert('Message sent');
-                }).catch(function(error) {
-                    window.alert('Error sending message: ' + error);
-                });
+                if(data.status == 'registered') {
+                    liff.sendMessages([{
+                        'type': 'text',
+                        'text': message,
+                    }]).then(function () {
+                        window.alert('Message sent');
+                    }).catch(function (error) {
+                        window.alert('Error sending message: ' + error);
+                    });
+                }
             }
         }
         
