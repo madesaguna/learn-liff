@@ -5,14 +5,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Cek Pemilih</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
-
+<style>
+    #form-identity-register {display: none}
+</style>
     </head>
     <body class="bg-light">
         <div class="container">
+
             <div class="py-5 text-center">
                 <img class="d-block mx-auto mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/KPU_Logo.svg/217px-KPU_Logo.svg.png" alt="" width="72">
                 <h2>Form pengecekan NIK</h2>
                 <p class="lead">Silakan check nama NIK anda!</p>
+            </div>
+            <div class="py-3">
+                <div class="buttonGroup">
+                    <div class="buttonRow">
+                        <button type="button" class="btn btn-primary" id="openWindowButton">Open External Window</button>
+                        <button type="button" class="btn btn-primary" id="closeWindowButton">Close LIFF App</button>
+                    </div>
+                </div>
             </div>
             <form id="form-identity-check">
                 <div class="form-group">
@@ -24,6 +35,7 @@
             </form>
 
             <form id="form-identity-register">
+                <h4 class="py-2 text-center">Form Registrasi Pemilih</h4>
                 <div class="form-group">
                     <label for="searchNik">Nomor Induk Kependudukan (No. KTP)</label>
                     <input name="nik" type="text" class="form-control" id="searchNik" aria-describedby="emailHelp" placeholder="Nomor Induk Kependudukan (Contoh : 5171xxx)">
@@ -38,12 +50,11 @@
                     <input name="no_telp" type="text" class="form-control" id="registerNoHP" placeholder="081xxx">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <a class="btn btn-primary btn-reg-cancel" href="#">Batal</a>
             </form>
 
             <div class="py-2">
-                <div id="result" class="text-center">
-                    Selamat Anda Telah terdaftar sebagai pemilih
-                </div>
+                <div id="result" class="text-center"></div>
             </div>
 
         </div>
@@ -51,10 +62,7 @@
         <div id="liffAppContent">
             <!-- ACTION BUTTONS -->
             <div class="buttonGroup">
-                <div class="buttonRow">
-                    <button id="openWindowButton">Open External Window</button>
-                    <button id="closeWindowButton">Close LIFF App</button>
-                </div>
+
                 <div class="buttonRow">
                     <button id="scanQrCodeButton">Open QR Code Reader</button>
                     <button id="sendMessageButton">Send Message</button>
