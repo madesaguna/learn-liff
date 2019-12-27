@@ -20,10 +20,12 @@
                 <p class="lead">Silakan check nama NIK anda!</p>
             </div>
             <div class="py-3">
-                <div class="buttonGroup">
-                    <div class="buttonRow">
-                        <button type="button" class="btn btn-primary" id="openWindowButton">Open External Window</button>
-                        <button type="button" class="btn btn-primary" id="closeWindowButton">Close LIFF App</button>
+                <div id="liffAppContent">
+                    <div class="buttonGroup">
+                        <div class="buttonRow">
+                            <button type="button" class="btn btn-primary" id="openWindowButton">Open External Window</button>
+                            <button type="button" class="btn btn-primary" id="closeWindowButton">Close LIFF App</button>
+                        </div>
                     </div>
                 </div>
             </div>
