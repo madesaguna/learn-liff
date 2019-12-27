@@ -5,24 +5,47 @@ function searchVoter(id) {
         data : {'nik': id},
         dataType : 'json',
         success : function(data) {
-            $('#result').html(data.msg);
-            let message = data.msg;
-            if (!liff.isInClient()) {
-                sendAlertIfNotInClient();
-            } else {
-                if(data.status == 'registered') {
-                    liff.sendMessages([{
-                        'type': 'text',
-                        'text': message,
-                    }]).then(function () {
-                        window.alert('Message sent');
-                    }).catch(function (error) {
-                        window.alert('Error sending message: ' + error);
-                    });
-                }
+            var result = data;
+            console.log(result);
+            $('#result').html(result.msg);
+            let message = result.msg;
+
+            // if registered
+            if(result.status === 'registered' && result.error === false) {
+                sendMessageToLine(message);
             }
         }
     });
+}
+
+// show form registration
+function showRegistration() {
+    $('#result').empty();
+    $('#form-identity-check').hide();
+    $('#form-identity-register').show();
+}
+
+// close form registration
+function closeRegistrationForm() {
+    $('#result').empty();
+    $('#form-identity-register').hide();
+    $('#form-identity-check').show();
+}
+
+// send message to LINE
+function sendMessageToLine(message) {
+    if (!liff.isInClient()) {
+        sendAlertIfNotInClient();
+    } else {
+        liff.sendMessages([{
+            'type': 'text',
+            'text': message,
+        }]).then(function () {
+            window.alert('Message sent');
+        }).catch(function (error) {
+            window.alert('Error sending message: ' + error);
+        });
+    }
 }
 
 (function(){
@@ -33,6 +56,7 @@ function searchVoter(id) {
        searchVoter(id);
    });
 
+   // registration
    jQuery('#form-identity-register').on('submit', function (e) {
        e.preventDefault();
        $.ajax({
@@ -41,24 +65,26 @@ function searchVoter(id) {
            data : $(this).serialize(),
            dataType : 'json',
            success : function(data) {
-               $('#result').html(data.msg);
+               console.log(data.msg);
                let message = data.msg;
-               if (!liff.isInClient()) {
-                   sendAlertIfNotInClient();
-               } else {
-                   if(data.status == 'registered') {
-                       liff.sendMessages([{
-                           'type': 'text',
-                           'text': message,
-                       }]).then(function () {
-                           window.alert('Message sent');
-                       }).catch(function (error) {
-                           window.alert('Error sending message: ' + error);
-                       });
-                   }
+
+               $('#form-identity-register').find('.form-group').removeClass('error-form');
+               $('#form-identity-register').find('.form-group').find('.error').empty().hide();
+
+               if(data.error === true && data.status === 'unregistered') {
+                    $.each(message, function (a,b) {
+                        console.log(a);
+                        $('#'+a).closest('.form-group').addClass('error-form');
+                        $('#'+a).siblings('.error').html(b).show();
+                    })
                }
+
+
+               if(data.status === 'registered' && data.error === false) {
+                   sendMessageToLine(message);
+               }
+               $('#result').html(message);
            }
        });
-
    })
 })(jQuery)

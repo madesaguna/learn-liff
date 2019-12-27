@@ -1,7 +1,8 @@
 <?php
 
-/* init db */
+header('Content-Type: application/json');
 
+/* init db */
 $connectionString = parse_url(getenv('DATABASE_URL'));
 $servername = $connectionString['host'];
 $username = $connectionString['user'];
@@ -11,7 +12,7 @@ $db = substr($connectionString['path'], 1);
 
 $result = [
     'error' => true,
-    'status' => 'unregistered',
+    'status' => 'error',
     'msg' => 'Not implemented'
 ];
 
@@ -36,6 +37,7 @@ try{
     if(isset($_POST['nik'])) {
         $data = getData($conn, $_POST['nik']);
         $msg = $_POST['nik'] . ' tidak terdaftar. Silakan daftar melalui link di bawah <a href="#" onclick="showRegistration()">Daftar</a>';
+        $result['status'] = 'unregistered';
         if($data !== false) {
             $msg = "NIK {$data['nik']} A/N {$data['nama']} telah didaftarkan. Tunggu petugas PPS untuk memverifikasi berkas anda!";
             $result['status'] = 'registered';
