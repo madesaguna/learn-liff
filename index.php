@@ -64,6 +64,11 @@
                 <div id="result" class="text-center"></div>
             </div>
 
+            <!-- LIFF INIT ERROR -->
+            <div id="liffInitErrorMessage" class="hidden">
+                <p>Something went wrong with LIFF initialization.</p>
+                <p>LIFF initialization can fail if a user clicks "Cancel" on the "Grant permission" screen, or if an error occurs in the process of <code>liff.init()</code>.
+            </div>
         </div>
 
         <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
