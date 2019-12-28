@@ -21,15 +21,13 @@ function searchVoter(id) {
 // show form registration
 function showRegistration() {
     $('#result').empty();
-    $('#form-identity-check').hide();
-    $('#form-identity-register').show();
+    $('#registrasi-tab').tab('show')
 }
 
 // close form registration
 function closeRegistrationForm() {
     $('#result').empty();
-    $('#form-identity-register').hide();
-    $('#form-identity-check').show();
+    $('#home-tab').tab('show');
 }
 
 // send message to LINE

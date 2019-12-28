@@ -3,93 +3,86 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIFF Starter</title>
+    <title>Cek Pemilih</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+        <style>
+            //#form-identity-register {display: none}
+            .error-form, .error-form .error {color:#8b0000}
+            .error-form input {border-color: #8b0000}
+            .error {display: none}
+        </style>
 </head>
-<body>
+<body class="bg-light">
 <div id="liffAppContent">
-    <!-- ACTION BUTTONS -->
-    <div class="buttonGroup">
-        <div class="buttonRow">
-            <button id="openWindowButton">Open External Window</button>
-            <button id="closeWindowButton">Close LIFF App</button>
+    
+    
+    
+    <!-- content -->
+    <div class="container">
+        <div class="py-5 text-center">
+            <img class="d-block mx-auto mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/KPU_Logo.svg/217px-KPU_Logo.svg.png" alt="" width="72">
+            <h2>Form pengecekan NIK</h2>
+            <p class="lead">Silakan check nama NIK anda!</p>
         </div>
-        <div class="buttonRow">
-            <button id="scanQrCodeButton">Open QR Code Reader</button>
-            <button id="sendMessageButton">Send Message</button>
+        <div class="py-3">
+            <div class="buttonGroup">
+                <div class="buttonRow">
+                    <button type="button" class="btn btn-primary" id="openWindowButton">Open External Window</button>
+                    <button type="button" class="btn btn-primary" id="closeWindowButton">Close LIFF App</button>
+                </div>
+            </div>
         </div>
-        <div class="buttonRow">
-            <button id="getAccessToken">Get Access Token</button>
-            <button id="getProfileButton">Get Profile</button>
+
+        <!-- TABS -->
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Pencarian</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="registrasi-tab" data-toggle="tab" href="#registrasi" role="tab" aria-controls="registrasi" aria-selected="false">Registrasi</a>
+          </li>
+        </ul>
+        
+        <div class="tab-content">
+            <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <!-- Pencarian -->
+                <h4 class="py-2 text-center">Form Pencarian Pemilih</h4>
+                <form id="form-identity-check">
+                    <div class="form-group">
+                        <label for="searchNik">Nomor Induk Kependudukan (No. KTP)</label>
+                        <input name="nik" type="text" class="form-control" id="searchNik" aria-describedby="emailHelp" placeholder="Nomor Induk Kependudukan (Contoh : 5171xxx)">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="tab-pane" id="registrasi" role="tabpanel" aria-labelledby="registrasi-tab">
+                <!-- registrasi -->
+                <form id="form-identity-register">
+                    <h4 class="py-2 text-center">Form Registrasi Pemilih</h4>
+                    <div class="form-group">
+                        <label for="searchNik">Nomor Induk Kependudukan (No. KTP)</label>
+                        <input name="nik" type="text" class="form-control" id="nik" aria-describedby="emailHelp" placeholder="Nomor Induk Kependudukan (Contoh : 5171xxx)">
+                        <div id="error-reg-nik" class="form-text error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="searchNama">Nama</label>
+                        <input name="nama" type="text" class="form-control" id="nama" placeholder="Nama Lengkap">
+                        <div id="error-reg-nama" class="form-text error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerNoHP">No. HP</label>
+                        <input name="no_telp" type="text" class="form-control" id="no_telp" placeholder="081xxx">
+                        <div id="error-reg-no_telp" class="form-text error"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a class="btn btn-primary btn-reg-cancel" onclick="closeRegistrationForm()" href="javascript:void(0);">Batal</a>
+                </form>
+            </div>
         </div>
-    </div>
-    <!-- ACCESS TOKEN DATA -->
-    <div id="accessTokenData" class="hidden textLeft">
-        <h2>Access Token</h2>
-        <a href="#" onclick="toggleAccessToken()">Close Access Token</a>
-        <table>
-            <tr>
-                <th>accessToken</th>
-                <td id="accessTokenField"></td>
-            </tr>
-        </table>
-    </div>
-    <!-- SCAN QR RESULT -->
-    <div id="scanQr" class="hidden textLeft">
-        <h2>QR Code reader</h2>
-        <a href="#" onclick="toggleQRCodeReader()">Close QR Code Reader Result</a>
-        <table>
-            <tr>
-                <th>scanCode Result</th>
-                <td id="scanQrField"></td>
-            </tr>
-        </table>
-    </div>
-    <!-- PROFILE INFO -->
-    <div id="profileInfo" class="hidden textLeft">
-        <h2>Profile</h2>
-        <a href="#" onclick="toggleProfileData()">Close Profile</a>
-        <div id="profilePictureDiv">
+        <div class="py-5">
+            <div id="result" class="text-center"></div>
         </div>
-        <table>
-            <tr>
-                <th>userId</th>
-                <td id="userIdProfileField"></td>
-            </tr>
-            <tr>
-                <th>displayName</th>
-                <td id="displayNameField"></td>
-            </tr>
-            <tr>
-                <th>statusMessage</th>
-                <td id="statusMessageField"></td>
-            </tr>
-        </table>
-    </div>
-    <!-- LIFF DATA -->
-    <div id="liffData">
-        <h2 id="liffDataHeader" class="textLeft">LIFF Data</h2>
-        <table>
-            <tr>
-                <th>OS</th>
-                <td id="deviceOS" class="textLeft"></td>
-            </tr>
-            <tr>
-                <th>Language</th>
-                <td id="browserLanguage" class="textLeft"></td>
-            </tr>
-            <tr>
-                <th>LIFF SDK Version</th>
-                <td id="sdkVersion" class="textLeft"></td>
-            </tr>
-            <tr>
-                <th>isInClient</th>
-                <td id="isInClient" class="textLeft"></td>
-            </tr>
-            <tr>
-                <th>isLoggedIn</th>
-                <td id="isLoggedIn" class="textLeft"></td>
-            </tr>
-        </table>
     </div>
     <!-- LOGIN LOGOUT BUTTONS -->
     <div class="buttonGroup">
@@ -130,6 +123,8 @@
     <p>Unable to receive the LIFF ID as an environment variable.</p>
 </div>
 <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="liff-starter.js"></script>
 <script src="app.js"></script>
 </body>
