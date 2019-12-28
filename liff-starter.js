@@ -120,7 +120,7 @@ function registerButtonHandlers() {
     });
 
     // sendMessages call
-    document.getElementById('sendMessageButton').addEventListener('click', function() {
+    /*document.getElementById('sendMessageButton').addEventListener('click', function() {
         if (!liff.isInClient()) {
             sendAlertIfNotInClient();
         } else {
@@ -133,10 +133,10 @@ function registerButtonHandlers() {
                 window.alert('Error sending message: ' + error);
             });
         }
-    });
+    });*/
 
     // scanCode call
-    document.getElementById('scanQrCodeButton').addEventListener('click', function() {
+    /*document.getElementById('scanQrCodeButton').addEventListener('click', function() {
         if (!liff.isInClient()) {
             sendAlertIfNotInClient();
         } else {
@@ -149,10 +149,10 @@ function registerButtonHandlers() {
                 document.getElementById('scanQrField').textContent = "scanCode failed!";
             });
         }
-    });
+    });*/
 
     // get access token
-    document.getElementById('getAccessToken').addEventListener('click', function() {
+    /*document.getElementById('getAccessToken').addEventListener('click', function() {
         if (!liff.isLoggedIn() && !liff.isInClient()) {
             alert('To get an access token, you need to be logged in. Please tap the "login" button below and try again.');
         } else {
@@ -160,10 +160,10 @@ function registerButtonHandlers() {
             document.getElementById('accessTokenField').textContent = accessToken;
             toggleAccessToken();
         }
-    });
+    });*/
 
     // get profile call
-    document.getElementById('getProfileButton').addEventListener('click', function() {
+    /*document.getElementById('getProfileButton').addEventListener('click', function() {
         liff.getProfile().then(function(profile) {
             document.getElementById('userIdProfileField').textContent = profile.userId;
             document.getElementById('displayNameField').textContent = profile.displayName;
@@ -182,7 +182,7 @@ function registerButtonHandlers() {
         }).catch(function(error) {
             window.alert('Error getting profile: ' + error);
         });
-    });
+    });*/
 
     // login call, only when external browser is used
     document.getElementById('liffLoginButton').addEventListener('click', function() {

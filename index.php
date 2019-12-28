@@ -13,10 +13,13 @@
         </style>
 </head>
 <body class="bg-light">
+
 <div id="liffAppContent">
-    
-    
-    
+<!-- LOGIN LOGOUT BUTTONS -->
+    <div class="buttonGroup">
+        <button id="liffLoginButton">Log in</button>
+        <button id="liffLogoutButton">Log out</button>
+    </div>
     <!-- content -->
     <div class="container">
         <div class="py-5 text-center">
@@ -25,10 +28,11 @@
             <p class="lead">Silakan check nama NIK anda!</p>
         </div>
         <div class="py-3">
+        
             <div class="buttonGroup">
                 <div class="buttonRow">
-                    <button type="button" class="btn btn-primary" id="openWindowButton">Open External Window</button>
-                    <button type="button" class="btn btn-primary" id="closeWindowButton">Close LIFF App</button>
+                    <button type="button" class="btn btn-primary btn-sm" id="openWindowButton">Open External Window</button>
+                    <button type="button" class="btn btn-primary btn-sm" id="closeWindowButton">Close LIFF App</button>
                 </div>
             </div>
         </div>
@@ -61,14 +65,32 @@
                 <form id="form-identity-register">
                     <h4 class="py-2 text-center">Form Registrasi Pemilih</h4>
                     <div class="form-group">
+                        <label for="searchKK">Nomor Induk Kependudukan (No. KTP)</label>
+                        <input name="no_kk" type="text" class="form-control" id="no_kk" aria-describedby="searchKK" placeholder="Nomor Kartu Keluarga (Contoh : 5171xxx)">
+                        <div id="error-reg-no_kk" class="form-text error"></div>
+                    </div>
+                    <div class="form-group">
                         <label for="searchNik">Nomor Induk Kependudukan (No. KTP)</label>
-                        <input name="nik" type="text" class="form-control" id="nik" aria-describedby="emailHelp" placeholder="Nomor Induk Kependudukan (Contoh : 5171xxx)">
+                        <input name="nik" type="text" class="form-control" id="nik" aria-describedby="searchNik" placeholder="Nomor Induk Kependudukan (Contoh : 5171xxx)">
                         <div id="error-reg-nik" class="form-text error"></div>
                     </div>
                     <div class="form-group">
                         <label for="searchNama">Nama</label>
                         <input name="nama" type="text" class="form-control" id="nama" placeholder="Nama Lengkap">
                         <div id="error-reg-nama" class="form-text error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="searchAlamat">Alamat</label>
+                        <input name="alamat" type="text" class="form-control" id="alamat" placeholder="Alamat Lengkap">
+                        <div id="error-reg-alamat" class="form-text error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="searchGender">Jenis Kelamin</label>
+                        <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
+                            <option value="L">Laki-laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                        <div id="error-reg-jenis_kelamin" class="form-text error"></div>
                     </div>
                     <div class="form-group">
                         <label for="registerNoHP">No. HP</label>
@@ -84,11 +106,7 @@
             <div id="result" class="text-center"></div>
         </div>
     </div>
-    <!-- LOGIN LOGOUT BUTTONS -->
-    <div class="buttonGroup">
-        <button id="liffLoginButton">Log in</button>
-        <button id="liffLogoutButton">Log out</button>
-    </div>
+    
     <div id="statusMessage">
         <div id="isInClientMessage"></div>
         <div id="apiReferenceMessage">
