@@ -4,10 +4,13 @@ function searchVoter(id) {
         url : 'search.php',
         data : {'nik': id},
         dataType : 'json',
+        beforeSend : function() {
+            $('#result').hide();
+        },
         success : function(data) {
             var result = data;
             console.log(result);
-            $('#result').html(result.msg);
+            $('#result').html(result.msg).show();
             let message = result.msg;
 
             // if registered
@@ -54,41 +57,43 @@ function sendMessageToLine(message) {
         yearRange: '-100y:c+nn',
         maxDate: '-1d'
     });
-   // do jQuery
-   jQuery('#form-identity-check').on('submit', function(e) {
+    // do jQuery
+    jQuery('#form-identity-check').on('submit', function(e) {
        e.preventDefault();
        let id = $(this).find('#searchNik').val();
        searchVoter(id);
-   });
+    });
 
-   // registration
-   jQuery('#form-identity-register').on('submit', function (e) {
-       e.preventDefault();
-       $.ajax({
-           type : 'POST',
-           url : 'simpan.php',
-           data : $(this).serialize(),
-           dataType : 'json',
-           success : function(data) {
-               console.log(data.msg);
-               let message = data.msg;
+    // registration
+    jQuery('#form-identity-register').on('submit', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type : 'POST',
+            url : 'simpan.php',
+            data : $(this).serialize(),
+            dataType : 'json',
+            beforeSend : function() {
+                $('#result').hide();
+            },
+            success : function(data) {
+                console.log(data.msg);
+                let message = data.msg;
 
-               $('#form-identity-register').find('.form-group').removeClass('error-form');
-               $('#form-identity-register').find('.form-group').find('.error').empty().hide();
+                $('#form-identity-register').find('.form-group').removeClass('error-form');
+                $('#form-identity-register').find('.form-group').find('.error').empty().hide();
 
-               if(data.error === true && data.status === 'unregistered') {
+                if(data.error === true && data.status === 'unregistered') {
                     $.each(message, function (a,b) {
                         console.log(a);
                         $('#'+a).closest('.form-group').addClass('error-form');
                         $('#'+a).siblings('.error').html(b).show();
                     })
-               }
+                }
 
-
-               if(data.status === 'registered' && data.error === false) {
+                if(data.status === 'registered' && data.error === false) {
                    sendMessageToLine(message);
-               }
-               $('#result').html(message);
+                }
+                $('#result').html(message).show();
            }
        });
    })

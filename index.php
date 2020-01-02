@@ -11,6 +11,13 @@
             .error-form, .error-form .error {color:#8b0000}
             .error-form input {border-color: #8b0000}
             .error {display: none}
+            #result {
+                display: none;
+                padding: .9em;
+                background: #fafad2;
+                color: #cd5c5c;
+                border: 1px solid #eee8aa;
+            }
         </style>
 </head>
 <body class="bg-light">
@@ -25,7 +32,7 @@
     <div class="container">
         <div class="py-5 text-center">
             <img class="d-block mx-auto mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/KPU_Logo.svg/217px-KPU_Logo.svg.png" alt="" width="72">
-            <h2>Form pengecekan NIK</h2>
+            <h2>Form Pengecekan Data Pemilih</h2>
             <p class="lead">Silakan check nama NIK anda!</p>
         </div>
         <div class="py-3">
