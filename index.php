@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cek Pemilih</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.min.css">
         <style>
             //#form-identity-register {display: none}
             .error-form, .error-form .error {color:#8b0000}
@@ -80,11 +81,6 @@
                         <div id="error-reg-nama" class="form-text error"></div>
                     </div>
                     <div class="form-group">
-                        <label for="searchAlamat">Alamat</label>
-                        <input name="alamat" type="text" class="form-control" id="alamat" placeholder="Alamat Lengkap">
-                        <div id="error-reg-alamat" class="form-text error"></div>
-                    </div>
-                    <div class="form-group">
                         <label for="searchGender">Jenis Kelamin</label>
                         <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
                             <option value="L">Laki-laki</option>
@@ -92,6 +88,42 @@
                         </select>
                         <div id="error-reg-jenis_kelamin" class="form-text error"></div>
                     </div>
+                    <div class="form-group">
+                        <label for="searchTempatLahir">Tempat Lahir</label>
+                        <input name="tempat_lahir" type="text" class="form-control" id="tempat_lahir" placeholder="Tempat Lahir">
+                        <div id="error-reg-tempat_lahir" class="form-text error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="searchTanggalLahir">Tanggal Lahir</label>
+                        <input name="tanggal_lahir" type="text" class="form-control" id="tanggal_lahir" readonly>
+                        <div id="error-reg-tanggal_lahir" class="form-text error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="searchAlamat">Alamat</label>
+                        <input name="alamat" type="text" class="form-control" id="alamat" placeholder="Alamat Lengkap">
+                        <div id="error-reg-alamat" class="form-text error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="searchNamaKelurahan">Nama Desa/Kelurahan</label>
+                        <input name="nama_kelurahan" type="text" class="form-control" id="nama_kelurahan" placeholder="Nama Desa/Kelurahan">
+                        <div id="error-reg-nama_kelurahan" class="form-text error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="searchNamaKecamatan">Nama Kecamatan</label>
+                        <input name="nama_kecamatan" type="text" class="form-control" id="nama_kecamatan" placeholder="Nama Kecamatan">
+                        <div id="error-reg-nama_kecamatan" class="form-text error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="searchNamaKabupaten">Nama Kabupaten</label>
+                        <input name="nama_kabupaten" type="text" class="form-control" id="nama_kabupaten" placeholder="Nama Kabupaten">
+                        <div id="error-reg-nama_kabupaten" class="form-text error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="searchNamaProvinsi">Nama Provinsi</label>
+                        <input name="nama_provinsi" type="text" class="form-control" id="nama_provinsi" placeholder="Nama Provinsi">
+                        <div id="error-reg-nama_provinsi" class="form-text error"></div>
+                    </div>
+                    
                     <div class="form-group">
                         <label for="registerNoHP">No. HP</label>
                         <input name="no_telp" type="text" class="form-control" id="no_telp" placeholder="081xxx">
@@ -143,6 +175,7 @@
 <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="liff-starter.js"></script>
 <script src="app.js"></script>
 </body>

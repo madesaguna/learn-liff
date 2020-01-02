@@ -28,6 +28,13 @@ function check_number($txt) {
     return (preg_match('/^\d+$/', $txt)) ? true : false;
 }
 
+function validateDate($date, $format = 'Y-m-d')
+{
+    $d = DateTime::createFromFormat($format, $date);
+    // The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.
+    return $d && $d->format($format) === $date;
+}
+
 function getData($conn, $id) {
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -55,12 +62,29 @@ try{
 
         $nik = $_POST['nik'];
         $nama = $_POST['nama'];
+        $no_kk = $_POST['no_kk'];
+        $alamat = $_POST['alamat'];
+        $tempat_lahir = $_POST['tempat_lahir'];
+        $tanggal_lahir = $_POST['tanggal_lahir'];
+        $nama_kelurahan = $_POST['nama_kelurahan'];
+        $nama_kecamatan = $_POST['nama_kecamatan'];
+        $nama_kabupaten = $_POST['nama_kabupaten'];
+        $nama_provinsi = $_POST['nama_provinsi'];
         $no_telp = $_POST['no_telp'];
 
         $data = getData($conn, $nik);
 
         //$msg = $_POST['nik'] . ' tidak terdaftar. Silakan daftar melalui link di bawah <a href="#" onclick="showRegistration()">Daftar</a>';
 
+        if(!check_number($no_kk)) {
+            $error = true;
+            $result['msg']['no_kk'] = 'No. KK harus angka!';
+        }
+        
+        if(!check_empty($no_kk)) {
+            $error = true;
+            $result['msg']['no_kk'] = 'No. KK tidak boleh kosong!';
+        }
 
         if(!check_number($nik)) {
             $error = true;
@@ -76,6 +100,31 @@ try{
             $error = true;
             $result['msg']['nama'] = 'Nama Lengkap tidak boleh kosong!';
         }
+        
+        if(!check_empty($alamat)) {
+            $error = true;
+            $result['msg']['alamat'] = 'Alamat tidak boleh kosong!';
+        }
+        
+        if(!check_empty($nama_kelurahan)) {
+            $error = true;
+            $result['msg']['nama_kelurahan'] = 'Nama Desa/Kelurahan tidak boleh kosong!';
+        }
+        
+        if(!check_empty($nama_kecamatan)) {
+            $error = true;
+            $result['msg']['nama_kecamatan'] = 'Nama Kecamatan tidak boleh kosong!';
+        }
+        
+        if(!check_empty($nama_kabupaten)) {
+            $error = true;
+            $result['msg']['nama_kabupaten'] = 'Nama Kabupaten tidak boleh kosong!';
+        }
+        
+        if(!check_empty($nama_provinsi)) {
+            $error = true;
+            $result['msg']['nama_provinsi'] = 'Nama Provinsi tidak boleh kosong!';
+        }
 
         if(!check_number($no_telp)) {
             $error = true;
@@ -87,13 +136,24 @@ try{
             $result['msg']['no_telp'] = 'No. Telepon tidak boleh kosong!';
         }
 
-        /*$stmt = $conn->prepare("INSERT INTO pemilih (nik, nama, no_hp) VALUES (:nik, :nama, :no_telp)");
+        $stmt = $conn->prepare("INSERT INTO pemilih (no_kk, nik, nama, tempat_lahir, tanggal_lahir, alamat, nama_kelurahan, nama_kecamatan, nama_kabupaten, nama_provinsi, no_hp) VALUES (
+            :no_kk, :nik, :nama, :tempat_lahir, :tanggal_lahir,
+            :alamat, :nama_kelurahan, :nama_kecamatan, :nama_kabupaten, :nama_provinsi,
+            :no_telp)");
         $dataPemilih = [
-            ':nik' => $_POST['nik'],
-            ':nama' => $_POST['nama'],
-            ':no_telp' => $_POST['no_telp'],
+            ':no_kk' => $no_kk,
+            ':nik' => $nik,
+            ':nama' => $nama,
+            ':tempat_lahir' => $tempat_lahir,
+            ':tanggal_lahir' => $tanggal_lahir,
+            ':alamat' => $alamat,
+            ':nama_kelurahan' => $nama_kelurahan,
+            ':nama_kecamatan' => $nama_kecamatan,
+            ':nama_kabupaten' => $nama_kabupaten,
+            ':nama_provinsi' => $nama_provinsi,
+            ':no_telp' => $no_telp,
         ];
-        $stmt->execute($dataPemilih);*/
+        $stmt->execute($dataPemilih);
         if(!$error) {
             $result = [
                 'error' => false,
@@ -107,5 +167,5 @@ try{
 } catch (PDOException $e) {
     $result['msg'] = $e->getMessage();
 }
-
-echo json_encode($result);
+var_dump($result);
+//echo json_encode($result);
