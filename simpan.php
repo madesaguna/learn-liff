@@ -136,25 +136,41 @@ try{
             $result['msg']['no_telp'] = 'No. Telepon tidak boleh kosong!';
         }
 
-        $stmt = $conn->prepare("INSERT INTO pemilih (no_kk, nik, nama, tempat_lahir, tanggal_lahir, alamat, nama_kelurahan, nama_kecamatan, nama_kabupaten, nama_provinsi, no_hp) VALUES (
-            :no_kk, :nik, :nama, :tempat_lahir, :tanggal_lahir,
-            :alamat, :nama_kelurahan, :nama_kecamatan, :nama_kabupaten, :nama_provinsi,
-            :no_telp)");
-        $dataPemilih = [
-            ':no_kk' => $no_kk,
-            ':nik' => $nik,
-            ':nama' => $nama,
-            ':tempat_lahir' => $tempat_lahir,
-            ':tanggal_lahir' => $tanggal_lahir,
-            ':alamat' => $alamat,
-            ':nama_kelurahan' => $nama_kelurahan,
-            ':nama_kecamatan' => $nama_kecamatan,
-            ':nama_kabupaten' => $nama_kabupaten,
-            ':nama_provinsi' => $nama_provinsi,
-            ':no_telp' => $no_telp,
-        ];
-        $stmt->execute($dataPemilih);
+        if(!validateDate($tanggal_lahir)) {
+            $error = true;
+            $result['msg']['tanggal_lahir'] = 'Tanggal lahir tidak valid!';
+        }
+
+        if(!check_empty($tanggal_lahir)) {
+            $error = true;
+            $result['msg']['tanggal_lahir'] = 'Tanggal lahir tidak boleh kosong!';
+        }
+
+        if(!check_empty($tempat_lahir)) {
+            $error = true;
+            $result['msg']['tempat_lahir'] = 'Tempat lahir tidak boleh kosong!';
+        }
+
         if(!$error) {
+            $stmt = $conn->prepare("INSERT INTO pemilih (no_kk, nik, nama, tempat_lahir, tanggal_lahir, alamat, nama_kelurahan, nama_kecamatan, nama_kabupaten, nama_provinsi, no_hp) VALUES (
+                :no_kk, :nik, :nama, :tempat_lahir, :tanggal_lahir,
+                :alamat, :nama_kelurahan, :nama_kecamatan, :nama_kabupaten, :nama_provinsi,
+                :no_telp)");
+            $dataPemilih = [
+                ':no_kk' => $no_kk,
+                ':nik' => $nik,
+                ':nama' => $nama,
+                ':tempat_lahir' => $tempat_lahir,
+                ':tanggal_lahir' => $tanggal_lahir,
+                ':alamat' => $alamat,
+                ':nama_kelurahan' => $nama_kelurahan,
+                ':nama_kecamatan' => $nama_kecamatan,
+                ':nama_kabupaten' => $nama_kabupaten,
+                ':nama_provinsi' => $nama_provinsi,
+                ':no_telp' => $no_telp,
+            ];
+            $stmt->execute($dataPemilih);
+
             $result = [
                 'error' => false,
                 'status' => 'registered',
@@ -167,5 +183,5 @@ try{
 } catch (PDOException $e) {
     $result['msg'] = $e->getMessage();
 }
-var_dump($result);
-//echo json_encode($result);
+//var_dump($result);
+echo json_encode($result);
