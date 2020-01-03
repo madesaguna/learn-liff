@@ -24,10 +24,10 @@
 
 <div id="liffAppContent">
 <!-- LOGIN LOGOUT BUTTONS -->
-    <div class="buttonGroup">
+    <!-- <div class="buttonGroup">
         <button id="liffLoginButton">Log in</button>
         <button id="liffLogoutButton">Log out</button>
-    </div>
+    </div> -->
     <!-- content -->
     <div class="container">
         <div class="py-5 text-center">
